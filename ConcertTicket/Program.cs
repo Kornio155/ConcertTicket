@@ -89,14 +89,16 @@ internal class Program
 
         bookingSystem.AddConcert(new Concert("Rock Fest", new DateTime(2024, 12, 10), "Warsaw", 100));
         bookingSystem.AddConcert(new Concert("Pop Concert", new DateTime(2024, 12, 15), "Krakow", 50));
-        bookingSystem.AddConcert(new Concert("Classical Night", new DateTime(2024, 12, 10), "Warsaw", 200));
+        bookingSystem.AddConcert(new Concert("Classical Night", new DateTime(2024, 12, 10), "Warsaw", 0));
+        bookingSystem.AddConcert(new Concert("Hip Hop Monday", new DateTime(2025, 1, 6), "Warsaw", 10));
 
         // Rezerwacja biletów
         Ticket ticket1 = bookingSystem.BookTicket(new Concert("Rock Fest", new DateTime(2024, 12, 10), "Warsaw", 100), 150, 1);
         Ticket ticket2 = bookingSystem.BookTicket(new Concert("Pop Concert", new DateTime(2024, 12, 15), "Krakow", 50), 120, 2);
+        Ticket ticket3 = bookingSystem.BookTicket(new Concert("Hip Hop Monday", new DateTime(2025, 1, 6), "Warsow", 50), 120, 2);
 
         // Wyświetlanie koncertów po dacie
-        var concertsByDate = bookingSystem.GetConcertsByDate(new DateTime(2024, 12, 10));
+        var concertsByDate = bookingSystem.GetConcertsByDate(new DateTime(2024, 12, 15));
         Console.WriteLine($"Concerts on this date:");
         foreach (var concert in concertsByDate)
         {
@@ -104,8 +106,8 @@ internal class Program
         }
 
         // Wyświetlanie koncertów po lokalizacji
-        Console.WriteLine("\nConcerts in Warsaw:");
-        var concertsByLocation = bookingSystem.GetConcertsByLocation("Warsaw");
+        var concertsByLocation = bookingSystem.GetConcertsByLocation("Krakow");
+        Console.WriteLine($"\nConcerts {Concert.Location}:");
         foreach (var concert in concertsByLocation)
         {
             Console.WriteLine($"{concert.Name} on {concert.Date}");
